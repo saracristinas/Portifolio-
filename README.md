@@ -43,5 +43,3 @@ Notas e próximos passos
 - Ajuste seu nome, links e conteúdo do `Hero` e `Navbar`.
 - Se quiser usar `country-flag-icons`, importe os SVGs de acordo com a documentação do pacote (ex.: `import 'country-flag-icons/3x2/BR.svg'` ou utilize o subpath apropriado).
 - Considere adicionar lint/format e CI, e rodar `next build` antes de publicar.
-
-# Portifolio-
