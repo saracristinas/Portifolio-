@@ -1,19 +1,20 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { FiHeart, FiArrowUp } from 'react-icons/fi';
+import { motion } from "framer-motion";
+import { FiHeart, FiArrowUp } from "react-icons/fi";
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="relative bg-slate-900 dark:bg-black text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 grid-pattern opacity-10" />
-      
-      <div className="container relative z-10">
+
+      {/* CONTAINER: centralizado e com padding lateral */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-12 grid md:grid-cols-3 gap-8 border-b border-slate-800">
           {/* About */}
           <div>
@@ -22,7 +23,7 @@ export default function Footer() {
               Desenvolvedora Full Stack apaixonada por criar experiências digitais incríveis.
             </p>
             <div className="flex gap-3">
-              {['🐙', '💼', '🐦', '📸'].map((icon, i) => (
+              {["🐙", "💼", "🐦", "📸"].map((icon, i) => (
                 <motion.a
                   key={i}
                   href="#"
@@ -39,7 +40,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4">Links Rápidos</h4>
             <ul className="space-y-2">
-              {['Início', 'Sobre', 'Skills', 'Projetos', 'Contato'].map((link) => (
+              {["Início", "Sobre", "Skills", "Projetos", "Contato"].map((link) => (
                 <li key={link}>
                   <a
                     href={`#${link.toLowerCase()}`}
@@ -66,7 +67,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-400 text-sm text-center sm:text-left">
-            © {new Date().getFullYear()} Sara. Feito com{' '}
+            © {new Date().getFullYear()} Sara. Feito com{" "}
             <FiHeart className="inline w-4 h-4 text-red-500" /> e muita dedicação.
           </p>
           <motion.button
