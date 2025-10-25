@@ -28,12 +28,13 @@ function countryCodeToEmoji(code?: string) {
 export default function ProjectCard({ title, description, countryCode, ...rest }: Props) {
   return (
     <motion.div
-      className="border rounded-lg p-4 bg-white/60 dark:bg-black/40 shadow-sm"
+      className="border rounded-lg p-4 card-bg shadow-sm hover:shadow-md"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.03 }}
       viewport={{ once: true, amount: 0.25 }}
-  transition={{ duration: 0.45 }}
-  {...(rest as any)}
+      transition={{ duration: 0.35 }}
+      {...(rest as any)}
     >
       <div className="flex items-center gap-3">
         <div className="text-2xl">{countryCodeToEmoji(countryCode)}</div>
