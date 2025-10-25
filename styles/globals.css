@@ -126,11 +126,11 @@
   }
 
   .btn-primary {
-    @apply px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 hover:scale-105 transition-all duration-300;
+    @apply px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 hover:scale-105 transition-all duration-300 text-sm sm:text-base;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 rounded-full border-2 border-[rgb(var(--accent))] text-[rgb(var(--accent))] font-semibold hover:bg-[rgb(var(--accent))] hover:text-white transition-all duration-300;
+    @apply px-4 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[rgb(var(--accent))] text-[rgb(var(--accent))] font-semibold hover:bg-[rgb(var(--accent))] hover:text-white transition-all duration-300 text-sm sm:text-base;
   }
 
   .card {
