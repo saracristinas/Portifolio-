@@ -2,33 +2,40 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FiCode, FiZap, FiHeart, FiTarget } from 'react-icons/fi';
+import { FiCode, FiZap, FiTarget, FiLayers } from 'react-icons/fi';
 
 const stats = [
-  { label: 'Projetos Concluídos', value: '50+', icon: FiTarget },
+  { label: 'Projetos Concluídos', value: '20+', icon: FiTarget },
   { label: 'Tecnologias', value: '20+', icon: FiCode },
-  { label: 'Anos de Experiência', value: '3+', icon: FiZap },
-  { label: 'Clientes Satisfeitos', value: '30+', icon: FiHeart },
+  { label: 'Anos de Experiência', value: '2+', icon: FiZap },
+  { label: 'Tecnologias Exploradas', value: '15+', icon: FiLayers },
 ];
 
 const timeline = [
   {
+    year: '2025',
+    title: 'Estagiária em Desenvolvimento Fullstack',
+    company: 'DBC Company',
+    description: 'Atuação com backend em Java e Spring Boot, desenvolvimento de APIs REST, testes com JUnit e integração com Kafka e AWS. Também envolvimento no frontend com React e TypeScript.',
+  },
+  {
     year: '2024',
-    title: 'Senior Developer',
-    company: 'Tech Company',
-    description: 'Liderando equipe de desenvolvimento e arquitetura de soluções.',
+    title: 'Desenvolvedora Back-End Java',
+    company: 'MV Sistemas',
+    description: 'Criação de APIs com Spring Boot, uso de microserviços e boas práticas de arquitetura. Implementação de testes unitários e otimização de código.',
   },
   {
-    year: '2022',
-    title: 'Full Stack Developer',
-    company: 'Startup Inovadora',
-    description: 'Desenvolvimento de aplicações web modernas com React e Node.js.',
+    year: '2024',
+    title: 'Desenvolvedora Web (Estágio)',
+    company: 'Ser Educacional',
+    description: 'Desenvolvimento de landing pages responsivas com HTML, CSS e JavaScript, foco em UX e acessibilidade.',
   },
   {
-    year: '2021',
-    title: 'Frontend Developer',
-    company: 'Agência Digital',
-    description: 'Criação de interfaces responsivas e experiências interativas.',
+    year: '2021 - 2023',
+    title: 'Jovem Aprendiz — Qualidade em Engenharia',
+    company: 'BRK',
+        description:
+          'Atuando em qualidade de engenharia: criando e organizando scripts para automatizar verificações, treinando equipes na plataforma interna e preparando documentação para padronizar processos.',
   },
 ];
 
@@ -65,7 +72,6 @@ export default function About() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Sobre <span className="gradient-text">Mim</span>
@@ -103,26 +109,26 @@ export default function About() {
               </h3>
               <div className="space-y-4 text-slate-600 dark:text-slate-400">
                 <p>
-                  Olá! Sou Sara, uma desenvolvedora apaixonada por criar experiências 
-                  digitais que fazem a diferença. Com formação em Ciência da Computação 
-                  e anos de experiência prática, especializei-me em desenvolver soluções 
+                  Olá! Sou Sara, uma desenvolvedora apaixonada por criar experiências
+                  digitais que fazem a diferença. Com formação em Sistemas de Informação
+                  e experiência prática, especializei-me em desenvolver soluções
                   web modernas e escaláveis.
                 </p>
                 <p>
-                  Minha jornada no desenvolvimento começou com curiosidade e evoluiu 
-                  para uma paixão genuína por resolver problemas complexos através do 
-                  código. Acredito que a melhor tecnologia é aquela que melhora a vida 
+                  Minha jornada no desenvolvimento começou com curiosidade e evoluiu
+                  para uma paixão genuína por resolver problemas complexos através do
+                  código. Acredito que a melhor tecnologia é aquela que melhora a vida
                   das pessoas de forma intuitiva e elegante.
                 </p>
                 <p>
-                  Quando não estou programando, você pode me encontrar explorando novas 
-                  tecnologias, contribuindo para projetos open source, ou compartilhando 
+                  Quando não estou programando, você pode me encontrar explorando novas
+                  tecnologias, contribuindo para projetos open source, ou compartilhando
                   conhecimento com a comunidade de desenvolvimento.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3 mt-8">
-                {['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'].map((tech) => (
+                {['Acessibilidade Digital', 'Código Limpo', 'Colaboração', 'Aprendizado Contínuo', 'Organização', 'Curiosidade'].map((tech) => (
                   <span
                     key={tech}
                     className="px-4 py-2 bg-teal-500/10 dark:bg-teal-400/10 border border-teal-500/20 rounded-full text-teal-600 dark:text-teal-400 text-sm font-medium"

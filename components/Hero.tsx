@@ -59,6 +59,47 @@ export default function Hero() {
     },
   };
 
+  // Email button that directly opens Gmail compose in a new tab
+  function EmailMenu() {
+    const subject = "Interesse em contato";
+    const body = `Olá Sara,
+
+Estou entrando em contato porque tenho interesse no seu trabalho e gostaria de conversar sobre oportunidades e possíveis colaborações.
+
+Atenciosamente,
+[Seu nome]
+[Seu telefone (opcional)]`;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=sarasales17062000@gmail.com&su=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    const mailtoLink = `mailto:sarasales17062000@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    function openGmail() {
+      // Tenta abrir o Gmail em nova aba. Se o navegador bloquear (window.open retorna null), faz fallback para mailto:
+      const newWin = window.open(gmailUrl, "_blank", "noopener,noreferrer");
+      if (!newWin) {
+        // Popup bloqueado ou falha — usar mailto para abrir o cliente padrão
+        window.location.href = mailtoLink;
+      }
+    }
+
+    return (
+      <button
+        type="button"
+        onClick={openGmail}
+        title="Abrir Gmail"
+        aria-label="Abrir o Gmail para enviar email"
+        className="p-2.5 sm:p-3 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white transition-all duration-300 hover:scale-110"
+      >
+        <FiMail className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
+    );
+  }
+
   return (
     <section
       className="
@@ -214,8 +255,10 @@ export default function Hero() {
                     <FiMail className="w-4 h-4 sm:w-5 sm:h-5" />
                   </a>
                   <a
-                    href="/curriculo.pdf"
+                    href="/Curriculo_Sara_FullStack.pdf"
                     download
+                    aria-label="Baixar currículo em PDF"
+                    title="Baixar CV (PDF)"
                     className="px-4 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 inline-flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto"
                   >
                     <FiDownload className="w-4 h-4 sm:w-5 sm:h-5" /> CV
@@ -243,12 +286,7 @@ export default function Hero() {
                   >
                     <FiLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
                   </a>
-                  <a
-                    href="mailto:sara@exemplo.com"
-                    className="p-2.5 sm:p-3 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-teal-500 hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <FiMail className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </a>
+                  <EmailMenu />
                 </motion.div>
               </div>
             </div>
