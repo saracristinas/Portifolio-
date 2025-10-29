@@ -50,12 +50,31 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
 
-    toast.success('Mensagem enviada com sucesso! Em breve entrarei em contato.');
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const json = await res.json();
+      if (!res.ok) {
+        console.error('Contact API error', json);
+        throw new Error(json?.error || 'Erro ao enviar mensagem');
+      }
+
+      toast.success('Mensagem enviada com sucesso! Em breve entrarei em contato.');
+      form.reset();
+    } catch (err) {
+      console.error('Failed to send contact form', err);
+      toast.error('Erro ao enviar a mensagem. Tente novamente mais tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Open Gmail compose in new tab with fallback to mailto
