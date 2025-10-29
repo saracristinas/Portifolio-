@@ -218,6 +218,8 @@ Atenciosamente,
                 </div>
 
                 <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto lg:mx-0">
+                  Desenvolvedora Full Stack (Java, Spring, React) que cria APIs e interfaces escaláveis.
+                  <br />
                   Apaixonada por criar soluções digitais inovadoras e experiências
                   de usuário incríveis. Transformo ideias em código e código em
                   realidade.
