@@ -2,7 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { FiMail, FiMapPin, FiPhone, FiSend } from 'react-icons/fi';
+import { FiMail, FiSend, FiLinkedin } from 'react-icons/fi';
 import { toast } from 'sonner';
 
 const contactInfo = [
@@ -13,16 +13,10 @@ const contactInfo = [
     link: 'sarasales17062000@gmail.com',
   },
   {
-    icon: FiPhone,
-    title: 'Telefone',
-    value: '+55 (11) 99999-9999',
-    link: 'tel:+5511999999999',
-  },
-  {
-    icon: FiMapPin,
-    title: 'Localização',
-    value: 'Recife, Brasil',
-    link: null,
+    icon: FiLinkedin,
+    title: 'LinkedIn',
+    value: 'sara-sales-95520618a',
+    link: 'https://www.linkedin.com/in/sara-sales-95520618a/',
   },
 ];
 
@@ -64,6 +58,29 @@ export default function Contact() {
     (e.target as HTMLFormElement).reset();
   };
 
+  // Open Gmail compose in new tab with fallback to mailto
+  function openGmailCompose() {
+    const subject = 'Interesse em contato';
+    const body = `Olá Sara,
+
+    Estou entrando em contato pois tenho interesse no seu trabalho e gostaria de conversar sobre oportunidades.
+    Atenciosamente,
+    [Seu nome]`;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+      'sarasales17062000@gmail.com'
+    )}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    const mailtoLink = `mailto:sarasales17062000@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    const newWin = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    if (!newWin) {
+      window.location.href = mailtoLink;
+    }
+  }
+
   return (
     <section id="contato" className="section bg-slate-50 dark:bg-slate-900" ref={ref}>
       <div className="container">
@@ -88,29 +105,39 @@ export default function Contact() {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Vamos Trabalhar Juntos</h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-8">
-                  Estou sempre aberta a discutir novos projetos, ideias criativas ou 
-                  oportunidades de fazer parte de suas visões. Seja para uma conversa 
-                  rápida ou um projeto de longo prazo, adoraria ouvir de você!
+                  Estou sempre aberta a discutir novos projetos, ideias criativas ou oportunidades de fazer parte de suas visões. Seja para uma conversa rápida ou um projeto de longo prazo, adoraria ouvir de você!
+                  <br />
+                  Tenho experiência com projetos remotos e colaboração assíncrona, fique à vontade para enviar um resumo do seu projeto.
                 </p>
               </div>
-
-              <div className="space-y-4">
+              <div className="space-y-4 flex-1">
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    whileHover={{ x: 10 }}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-teal-500 dark:hover:border-teal-400 transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-teal-500 dark:hover:border-teal-400 transition-all duration-300"
                   >
-                    <div className="p-3 rounded-lg bg-teal-500/10 dark:bg-teal-400/10 text-teal-600 dark:text-teal-400">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-teal-500/10 dark:bg-teal-400/10 text-teal-600 dark:text-teal-400">
                       <info.icon className="w-6 h-6" />
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">{info.title}</h4>
-                      {info.link ? (
+                      {info.title === 'Email' ? (
+                        <button
+                          type="button"
+                          onClick={openGmailCompose}
+                          className="text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                          aria-label={`Enviar email para ${info.value}`}
+                        >
+                          {info.value}
+                        </button>
+                      ) : info.link ? (
                         <a
                           href={info.link}
                           className="text-slate-600 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                          target={info.link && info.link.startsWith('http') ? '_blank' : undefined}
+                          rel={info.link && info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                         >
                           {info.value}
                         </a>
@@ -122,27 +149,20 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Social Links */}
+              {/* Disponibilidade (sem botão de agendamento) */}
               <div>
-                <h4 className="font-semibold mb-4">Me encontre também em:</h4>
-                <div className="flex gap-4">
-                  {[
-                    { name: 'GitHub', url: 'https://github.com/saracristinas', icon: '🐙' },
-                    { name: 'LinkedIn', url: 'https://linkedin.com', icon: '💼' },
-                    { name: 'Twitter', url: 'https://twitter.com', icon: '🐦' },
-                    { name: 'Instagram', url: 'https://instagram.com', icon: '📸' },
-                  ].map((social) => (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 flex items-center justify-center text-2xl rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-teal-500 dark:hover:border-teal-400 hover:scale-110 transition-all duration-300"
-                      title={social.name}
-                    >
-                      {social.icon}
-                    </a>
-                  ))}
+                <h4 className="font-semibold mb-4">Disponibilidade</h4>
+                <div className="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                  <p className="font-semibold text-slate-700 dark:text-slate-300">Disponível para novos projetos</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                    Aberta a oportunidades freelance e posições remotas. Vamos conversar sobre como posso ajudar no seu projeto.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    <span className="px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-sm">Freelance</span>
+                    <span className="px-3 py-1 rounded-full bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-sm">Remoto</span>
+                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm">Tempo parcial</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -221,7 +241,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed mt-auto"
                 >
                   {isSubmitting ? (
                     <>
