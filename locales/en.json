@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Hi, I'm ",
+    "subtitle": "FullStack Developer building accessible and delightful web experiences.",
+    "download_cv": "Download CV",
+    "contact_me": "Contact me",
+    "words": [
+      "FullStack Developer",
+      "Software engineer",
+      "Creator of delightful experiences"
+    ],
+    "welcome_badge": "👋 Welcome to my portfolio",
+    "see_projects": "See projects",
+    "scroll_down": "Scroll down"
+  }
+  ,
+  "about": {
+    "titlePrefix": "About",
+    "titleSuffix": "Me",
+    "subtitle": "Learn about my journey and what drives me as a developer",
+    "transformTitlePrefix": "Turning Ideas into",
+    "transformTitleSuffix": "Digital Reality",
+    "paragraphs": [
+      "Hi! I'm Sara, a developer passionate about building digital experiences that make a difference. With a degree in Information Systems and hands-on experience, I specialize in creating modern, scalable web solutions.",
+      "My journey into development began with curiosity and evolved into a genuine passion for solving complex problems through code. I believe the best technology improves people's lives in intuitive and elegant ways.",
+      "When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community."
+    ],
+    "experienceTitle": "Professional Experience",
+    "stats": {
+      "projects": "Completed Projects",
+      "tech": "Technologies",
+      "years": "Years of Experience",
+      "explored": "Technologies Explored"
+    },
+    "timeline": [
+      {
+        "year": "2025",
+        "title": "Fullstack Development Intern",
+        "company": "DBC Company",
+        "description": "Worked on backend with Java and Spring Boot, building REST APIs, testing with JUnit and integrating with Kafka and AWS. Also involved in frontend development with React and TypeScript."
+      },
+      {
+        "year": "2024",
+        "title": "Back-End Java Developer",
+        "company": "MV Sistemas",
+        "description": "Built APIs with Spring Boot, used microservices and architectural best practices. Implemented unit tests and optimized code."
+      },
+      {
+        "year": "2024",
+        "title": "Web Developer (Intern)",
+        "company": "Ser Educacional",
+        "description": "Developed responsive landing pages with HTML, CSS and JavaScript, focusing on UX and accessibility."
+      },
+      {
+        "year": "2021 - 2023",
+        "title": "Junior Apprentice — Engineering Quality",
+        "company": "BRK",
+        "description": "Worked on engineering quality: creating and organizing scripts to automate checks, training teams on the internal platform and preparing documentation to standardize processes."
+      }
+    ]
+  },
+  "contact": {
+    "titlePrefix": "Get in",
+    "titleSuffix": "Touch",
+    "subtitle": "Have a project in mind? Let's talk and turn your ideas into reality!",
+    "workWithMeTitle": "Let's Work Together",
+    "workWithMeText": "I'm always open to discuss new projects, creative ideas or opportunities to be part of your vision. Whether it's a quick chat or a long-term engagement, I'd love to hear from you.\nI have experience with remote projects and async collaboration — feel free to send a summary of your project.",
+    "availability": {
+      "title": "Availability",
+      "status": "Available for new projects",
+      "description": "Open to freelance opportunities and remote roles. Let's talk about how I can help with your project.",
+      "tags": ["Freelance", "Remote", "Part-time"]
+    },
+    "toasts": {
+      "success": "Message sent successfully! I'll get back to you soon.",
+      "error": "Failed to send the message. Please try again later."
+    },
+    "form": {
+      "name": { "label": "Name", "placeholder": "Your full name" },
+      "email": { "label": "Email", "placeholder": "you@example.com" },
+      "subject": { "label": "Subject", "placeholder": "How can I help?" },
+      "message": { "label": "Message", "placeholder": "Tell me about your project or idea..." },
+      "sending": "Sending...",
+      "submit": "Send Message"
+    }
+  },
+  "projects": {
+    "titlePrefix": "My",
+    "titleSuffix": "Projects",
+    "subtitle": "Check out some of the projects I've built with passion and care"
+  },
+  "skills": {
+    "titlePrefix": "My",
+    "titleSuffix": "Skills",
+    "subtitle": "Technologies and tools I master to build amazing solutions",
+    "categories": {
+      "frontend": "Front-end",
+      "libraries": "Libraries & UI",
+      "backend": "Backend",
+      "databases": "Databases",
+      "tools": "Tools & DevOps",
+      "concepts": "Concepts & Methodologies"
+    },
+    "otherSkills": "Other Competencies",
+    "softSkills": {
+      "accessibility": "Digital Accessibility",
+      "cleanCode": "Clean Code",
+      "collaboration": "Collaboration",
+      "learning": "Continuous Learning",
+      "organization": "Organization",
+      "curiosity": "Curiosity"
+    }
+  }
+}

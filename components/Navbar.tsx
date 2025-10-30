@@ -4,18 +4,15 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import { useI18n } from "./LanguageProvider";
 
-const navLinks = [
-  { name: "Início", href: "#" },
-  { name: "Sobre", href: "#sobre" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projetos", href: "#projetos" },
-  { name: "Contato", href: "#contato" },
-];
+// navLinks will be rendered using translations
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -37,13 +34,13 @@ export default function Navbar() {
         {/* container com padding lateral para não colar nas bordas */}
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo — estilo “tag de código”: </ Sara > */}
+            {/* Logo — estilo "tag de código": </ Sara > */}
             <motion.a
-              href="#"
+              href="/"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="group inline-flex items-center font-mono text-xl sm:text-2xl font-bold tracking-wide"
-              aria-label="Ir para o início"
+              aria-label={t('nav.home')}
             >
               <span className="gradient-text flex items-center">
                 <span
@@ -69,25 +66,35 @@ export default function Navbar() {
             </motion.a>
 
             {/* Navegação desktop */}
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link, index) => (
+            <div className="hidden md:flex items-center gap-6">
+              {[
+                { key: "nav.home", href: "/" },
+                { key: "nav.about", href: "#sobre" },
+                { key: "nav.skills", href: "#skills" },
+                { key: "nav.projects", href: "#projetos" },
+                { key: "nav.contact", href: "#contato" },
+              ].map((link, index) => (
                 <motion.a
-                  key={link.name}
+                  key={link.key}
                   href={link.href}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   className="text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 font-medium transition-colors relative group"
                 >
-                  {link.name}
+                  {t(link.key)}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 group-hover:w-full transition-all duration-300" />
                 </motion.a>
               ))}
-              <ThemeToggle />
+              <div className="flex items-center gap-3">
+                <LanguageToggle />
+                <ThemeToggle />
+              </div>
             </div>
 
             {/* Botão menu mobile */}
             <div className="flex md:hidden items-center gap-4">
+              <LanguageToggle />
               <ThemeToggle />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -116,9 +123,15 @@ export default function Navbar() {
             className="fixed top-16 sm:top-20 right-0 bottom-0 w-64 bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-40 md:hidden"
           >
             <div className="flex flex-col p-6 gap-4">
-              {navLinks.map((link, index) => (
+              {[
+                { key: "nav.home", href: "/" },
+                { key: "nav.about", href: "#sobre" },
+                { key: "nav.skills", href: "#skills" },
+                { key: "nav.projects", href: "#projetos" },
+                { key: "nav.contact", href: "#contato" },
+              ].map((link, index) => (
                 <motion.a
-                  key={link.name}
+                  key={link.key}
                   href={link.href}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -126,7 +139,7 @@ export default function Navbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-lg font-medium text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 py-3 border-b border-slate-200 dark:border-slate-800 transition-colors"
                 >
-                  {link.name}
+                  {t(link.key)}
                 </motion.a>
               ))}
             </div>

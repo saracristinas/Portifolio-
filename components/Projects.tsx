@@ -3,9 +3,14 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FiGithub, FiExternalLink, FiStar } from 'react-icons/fi';
+import { useI18n } from './LanguageProvider';
+import en from '../locales/en.json';
+import pt from '../locales/pt.json';
+import es from '../locales/es.json';
 
+const LOCALES: Record<string, any> = { en, pt, es };
 
-const projects = [
+const defaultProjects = [
   {
     title: 'E-Commerce Platform',
     description: 'Plataforma completa de e-commerce com carrinho, checkout e painel administrativo.',
@@ -65,6 +70,10 @@ const projects = [
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const { lang, t } = useI18n();
+  const L = LOCALES[lang] ?? { projects: defaultProjects };
+  // Ensure projects is always an array to avoid runtime errors when locale provides an object
+  const projects = Array.isArray(L?.projects) ? L.projects : defaultProjects;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -99,16 +108,16 @@ export default function Projects() {
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Meus <span className="gradient-text">Projetos</span>
+              {t('projects.titlePrefix')} <span className="gradient-text">{t('projects.titleSuffix')}</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Confira alguns dos projetos que desenvolvi com paixão e dedicação
+              {t('projects.subtitle')}
             </p>
           </motion.div>
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {projects.map((project: any, index: number) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -142,7 +151,7 @@ export default function Projects() {
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag) => (
+                      {(Array.isArray(project.tags) ? project.tags : []).map((tag: string) => (
                         <span
                           key={tag}
                           className="px-3 py-1 bg-teal-500/10 dark:bg-teal-400/10 border border-teal-500/20 rounded-full text-teal-600 dark:text-teal-400 text-xs font-medium"

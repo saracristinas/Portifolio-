@@ -16,10 +16,11 @@ import { FiCode } from 'react-icons/fi';
 import {  MdAccessibility } from 'react-icons/md';
 import { GiBrain } from 'react-icons/gi';
 import { FaObjectGroup, FaShieldAlt, FaCogs } from 'react-icons/fa';
+import { useI18n } from './LanguageProvider';
 
 const skillCategories = [
   {
-    title: 'Front-end',
+    titleKey: 'skills.categories.frontend',
     skills: [
       { name: 'React', icon: SiReact, level: 95, color: '#61DAFB' },
       { name: 'Next.js', icon: SiNextdotjs, level: 90, color: '#000000' },
@@ -31,7 +32,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Bibliotecas & UI',
+    titleKey: 'skills.categories.libraries',
     skills: [
       { name: 'Tailwind CSS', icon: SiTailwindcss, level: 92, color: '#06B6D4' },
       { name: 'Sass Modules', icon: SiSass, level: 80, color: '#CC6699' },
@@ -40,7 +41,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Backend',
+    titleKey: 'skills.categories.backend',
     skills: [
   { name: 'Java', icon: DiJava, level: 85, color: '#0077C8' },
   { name: 'SpringBoot', icon: SiSpringboot, level: 82, color: '#47A248' },
@@ -49,7 +50,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Bancos de Dados',
+    titleKey: 'skills.categories.databases',
     skills: [
         { name: 'MySQL', icon: SiMysql, level: 75, color: '#00758F' },
       { name: 'MongoDB', icon: SiMongodb, level: 82, color: '#3FA037' },
@@ -57,7 +58,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Tools & DevOps',
+    titleKey: 'skills.categories.tools',
     skills: [
   { name: 'Git', icon: SiGit, level: 90, color: '#F05032' },
   { name: 'Docker', icon: SiDocker, level: 75, color: '#2496ED' },
@@ -66,7 +67,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Conceitos & Metodologias',
+    titleKey: 'skills.categories.concepts',
     skills: [
   { name: 'Lógica de Programação', icon: GiBrain, level: 90, color: '#8B5CF6' },
   { name: 'POO', icon: FaObjectGroup, level: 85, color: '#0EA5A4' },
@@ -81,6 +82,7 @@ const skillCategories = [
 export default function Skills() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const { t } = useI18n();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,10 +116,10 @@ export default function Skills() {
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Minhas <span className="gradient-text">Habilidades</span>
+              {t('skills.titlePrefix')} <span className="gradient-text">{t('skills.titleSuffix')}</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Tecnologias e ferramentas que domino para criar soluções incríveis
+              {t('skills.subtitle')}
             </p>
           </motion.div>
 
@@ -130,7 +132,7 @@ export default function Skills() {
                 className="card hover:shadow-2xl"
               >
                 <h3 className="text-2xl font-bold mb-6 gradient-text">
-                  {category.title}
+                  {t(category.titleKey)}
                 </h3>
                 <div className="space-y-6">
                   <div className="flex flex-wrap gap-3">
@@ -156,7 +158,7 @@ export default function Skills() {
           {/* Additional Skills */}
           <motion.div variants={itemVariants} className="mt-16">
             <h3 className="text-2xl font-bold text-center mb-8">
-              Outras Competências
+              {t('skills.otherSkills')}
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
               {[

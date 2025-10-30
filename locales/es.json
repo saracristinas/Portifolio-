@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "Hola, soy  ",
+    "subtitle": "Desarrolladora FullStack construyendo experiencias web accesibles y agradables.",
+    "download_cv": "Descargar CV",
+    "contact_me": "Contactarme",
+    "words": [
+      "Desarrolladora FullStack",
+      "Ingeniera de software",
+      "Creadora de experiencias"
+    ],
+    "welcome_badge": "👋 Bienvenido a mi portafolio",
+    "see_projects": "Ver proyectos",
+    "scroll_down": "Desplazar hacia abajo"
+  }
+  ,
+  "about": {
+    "titlePrefix": "Sobre",
+    "titleSuffix": "Mí",
+    "subtitle": "Conoce mi trayectoria y lo que me impulsa como desarrolladora",
+    "transformTitlePrefix": "Transformando Ideas en",
+    "transformTitleSuffix": "Realidad Digital",
+    "paragraphs": [
+      "¡Hola! Soy Sara, una desarrolladora apasionada por crear experiencias digitales que marcan la diferencia. Con formación en Sistemas de Información y experiencia práctica, me especialicé en desarrollar soluciones web modernas y escalables.",
+      "Mi trayectoria en el desarrollo comenzó con curiosidad y evolucionó hacia una pasión genuina por resolver problemas complejos a través del código. Creo que la mejor tecnología es la que mejora la vida de las personas de forma intuitiva y elegante.",
+      "Cuando no estoy programando, me encontrarás explorando nuevas tecnologías, contribuyendo a proyectos open source o compartiendo conocimiento con la comunidad de desarrolladores."
+    ],
+    "experienceTitle": "Experiencia Profesional",
+    "stats": {
+      "projects": "Proyectos Completados",
+      "tech": "Tecnologías",
+      "years": "Años de Experiencia",
+      "explored": "Tecnologías Exploradas"
+    },
+    "timeline": [
+      {
+        "year": "2025",
+        "title": "Pasantía en Desarrollo Fullstack",
+        "company": "DBC Company",
+        "description": "Trabajo en backend con Java y Spring Boot, desarrollo de APIs REST, pruebas con JUnit e integración con Kafka y AWS. También participación en frontend con React y TypeScript."
+      },
+      {
+        "year": "2024",
+        "title": "Desarrolladora Back-End Java",
+        "company": "MV Sistemas",
+        "description": "Creación de APIs con Spring Boot, uso de microservicios y buenas prácticas de arquitectura. Implementación de pruebas unitarias y optimización de código."
+      },
+      {
+        "year": "2024",
+        "title": "Desarrolladora Web (Pasantía)",
+        "company": "Ser Educacional",
+        "description": "Desarrollo de landing pages responsivas con HTML, CSS y JavaScript, con enfoque en UX y accesibilidad."
+      },
+      {
+        "year": "2021 - 2023",
+        "title": "Joven Aprendiz — Calidad en Ingeniería",
+        "company": "BRK",
+        "description": "Actuando en calidad de ingeniería: creando y organizando scripts para automatizar verificaciones, entrenando equipos en la plataforma interna y preparando documentación para estandarizar procesos."
+      }
+    ]
+  },
+  "contact": {
+    "titlePrefix": "Ponte en",
+    "titleSuffix": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente? ¡Hablemos y convirtamos tus ideas en realidad!",
+    "workWithMeTitle": "Trabajemos Juntas",
+    "workWithMeText": "Siempre estoy abierta a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tu visión. Ya sea una charla rápida o un proyecto a largo plazo, me encantaría saber de ti.\nTengo experiencia con proyectos remotos y colaboración asíncrona — no dudes en enviar un resumen de tu proyecto.",
+    "availability": {
+      "title": "Disponibilidad",
+      "status": "Disponible para nuevos proyectos",
+      "description": "Abierta a oportunidades freelance y roles remotos. Hablemos sobre cómo puedo ayudar en tu proyecto.",
+      "tags": ["Freelance", "Remoto", "Medio tiempo"]
+    },
+    "toasts": {
+      "success": "¡Mensaje enviado con éxito! Me pondré en contacto pronto.",
+      "error": "Error al enviar el mensaje. Por favor intenta de nuevo más tarde."
+    },
+    "form": {
+      "name": { "label": "Nombre", "placeholder": "Tu nombre completo" },
+      "email": { "label": "Email", "placeholder": "tu@ejemplo.com" },
+      "subject": { "label": "Asunto", "placeholder": "¿En qué puedo ayudar?" },
+      "message": { "label": "Mensaje", "placeholder": "Cuéntame sobre tu proyecto o idea..." },
+      "sending": "Enviando...",
+      "submit": "Enviar Mensaje"
+    }
+  },
+  "projects": {
+    "titlePrefix": "Mis",
+    "titleSuffix": "Proyectos",
+    "subtitle": "Mira algunos de los proyectos que desarrollé con pasión y dedicación"
+  },
+  "skills": {
+    "titlePrefix": "Mis",
+    "titleSuffix": "Habilidades",
+    "subtitle": "Tecnologías y herramientas que domino para crear soluciones increíbles",
+    "categories": {
+      "frontend": "Front-end",
+      "libraries": "Bibliotecas & UI",
+      "backend": "Backend",
+      "databases": "Bases de Datos",
+      "tools": "Herramientas & DevOps",
+      "concepts": "Conceptos & Metodologías"
+    },
+    "otherSkills": "Otras Competencias",
+    "softSkills": {
+      "accessibility": "Accesibilidad Digital",
+      "cleanCode": "Código Limpio",
+      "collaboration": "Colaboración",
+      "learning": "Aprendizaje Continuo",
+      "organization": "Organización",
+      "curiosity": "Curiosidad"
+    }
+  }
+}

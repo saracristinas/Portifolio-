@@ -4,18 +4,20 @@ import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from "react-icons/fi";
 import Image from "next/image";
+import { useI18n } from "./LanguageProvider";
+import en from "../locales/en.json";
+import pt from "../locales/pt.json";
+import es from "../locales/es.json";
 
 export default function Hero() {
+  const { lang, t } = useI18n();
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const words = [
-    "Desenvolvedora Full Stack",
-    "Engenheira de Software",
-    "Criadora de Experiências",
-    ];
+  const LOCALES: Record<string, any> = { en, pt, es };
+  const words: string[] = LOCALES[lang]?.hero?.words ?? [t("hero.subtitle")];
 
   useEffect(() => {
     const handleType = () => {
@@ -195,13 +197,13 @@ export default function Hero() {
                 "
               >
                 <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-teal-500/10 dark:bg-teal-400/10 border border-teal-500/20 rounded-full text-teal-600 dark:text-teal-400 text-xs sm:text-sm font-semibold">
-                  👋 Bem-vindo(a) ao meu portfólio
+                  {t("hero.welcome_badge")}
                 </span>
               </motion.div>
 
               <div className="order-2">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-                  Olá, eu sou{" "}
+                  {t("hero.title")}
                   <span className="gradient-text block sm:inline mt-2 sm:mt-0">
                     Sara
                   </span>
@@ -215,11 +217,7 @@ export default function Hero() {
                 </div>
 
                 <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto lg:mx-0">
-                  Desenvolvedora Full Stack (Java, Spring, React) que cria APIs e interfaces escaláveis.
-                  <br />
-                  Apaixonada por criar soluções digitais inovadoras e experiências
-                  de usuário incríveis. Transformo ideias em código e código em
-                  realidade.
+                  {t("hero.subtitle")}
                 </p>
 
                 {/* CTA Buttons */}
@@ -231,7 +229,7 @@ export default function Hero() {
                     href="#projetos"
                     className="btn-primary inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
-                    Ver Projetos
+                    {t("hero.see_projects")}
                     <svg
                       className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
@@ -250,14 +248,14 @@ export default function Hero() {
                     href="#contato"
                     className="btn-secondary inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
-                    Entre em Contato
+                    {t("hero.contact_me")}
                     <FiMail className="w-4 h-4 sm:w-5 sm:h-5" />
                   </a>
                   <a
                     href="/Curriculo_Sara_FullStack.pdf"
                     download
-                    aria-label="Baixar currículo em PDF"
-                    title="Baixar CV (PDF)"
+                    aria-label={t("hero.download_cv")}
+                    title={t("hero.download_cv")}
                     className="px-4 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 inline-flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto"
                   >
                     <FiDownload className="w-4 h-4 sm:w-5 sm:h-5" /> CV
@@ -318,7 +316,7 @@ export default function Hero() {
           }
         >
           <span className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            Role para baixo
+            {t("hero.scroll_down")}
           </span>
           <svg
             className="w-5 h-5 sm:w-6 sm:h-6 text-teal-500"

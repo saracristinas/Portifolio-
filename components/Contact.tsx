@@ -4,17 +4,23 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { FiMail, FiSend, FiLinkedin } from 'react-icons/fi';
 import { toast } from 'sonner';
+import { useI18n } from './LanguageProvider';
+import en from '../locales/en.json';
+import pt from '../locales/pt.json';
+import es from '../locales/es.json';
 
-const contactInfo = [
+const LOCALES: Record<string, any> = { en, pt, es };
+
+const contactInfoBase = [
   {
     icon: FiMail,
-    title: 'Email',
+    key: 'contact.info.email.title',
     value: 'sarasales17062000@gmail.com',
     link: 'sarasales17062000@gmail.com',
   },
   {
     icon: FiLinkedin,
-    title: 'LinkedIn',
+    key: 'contact.info.linkedin.title',
     value: 'sara-sales-95520618a',
     link: 'https://www.linkedin.com/in/sara-sales-95520618a/',
   },
@@ -46,6 +52,9 @@ export default function Contact() {
     },
   };
 
+  const { lang, t } = useI18n();
+  const L = LOCALES[lang] ?? pt;
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -67,11 +76,11 @@ export default function Contact() {
         throw new Error(json?.error || 'Erro ao enviar mensagem');
       }
 
-      toast.success('Mensagem enviada com sucesso! Em breve entrarei em contato.');
+      toast.success(t('contact.toasts.success'));
       form.reset();
     } catch (err) {
       console.error('Failed to send contact form', err);
-      toast.error('Erro ao enviar a mensagem. Tente novamente mais tarde.');
+      toast.error(t('contact.toasts.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -111,10 +120,10 @@ export default function Contact() {
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              Entre em <span className="gradient-text">Contato</span>
+              {t('contact.titlePrefix')} <span className="gradient-text">{t('contact.titleSuffix')}</span>
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Tem um projeto em mente? Vamos conversar e transformar suas ideias em realidade!
+              {t('contact.subtitle')}
             </p>
           </motion.div>
 
@@ -122,15 +131,11 @@ export default function Contact() {
             {/* Contact Info */}
             <motion.div variants={itemVariants} className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-6">Vamos Trabalhar Juntos</h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-8">
-                  Estou sempre aberta a discutir novos projetos, ideias criativas ou oportunidades de fazer parte de suas visões. Seja para uma conversa rápida ou um projeto de longo prazo, adoraria ouvir de você!
-                  <br />
-                  Tenho experiência com projetos remotos e colaboração assíncrona, fique à vontade para enviar um resumo do seu projeto.
-                </p>
+                <h3 className="text-2xl font-bold mb-6">{t('contact.workWithMeTitle')}</h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-8">{t('contact.workWithMeText')}</p>
               </div>
               <div className="space-y-4 flex-1">
-                {contactInfo.map((info, index) => (
+                {contactInfoBase.map((info, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
@@ -141,8 +146,8 @@ export default function Contact() {
                       <info.icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">{info.title}</h4>
-                      {info.title === 'Email' ? (
+                      <h4 className="font-semibold mb-1">{t(info.key)}</h4>
+                        {info.value && info.value.includes('@') ? (
                         <button
                           type="button"
                           onClick={openGmailCompose}
@@ -170,17 +175,23 @@ export default function Contact() {
 
               {/* Disponibilidade (sem botão de agendamento) */}
               <div>
-                <h4 className="font-semibold mb-4">Disponibilidade</h4>
+                <h4 className="font-semibold mb-4">{t('contact.availability.title')}</h4>
                 <div className="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
-                  <p className="font-semibold text-slate-700 dark:text-slate-300">Disponível para novos projetos</p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                    Aberta a oportunidades freelance e posições remotas. Vamos conversar sobre como posso ajudar no seu projeto.
-                  </p>
+                  <p className="font-semibold text-slate-700 dark:text-slate-300">{t('contact.availability.status')}</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{t('contact.availability.description')}</p>
 
                   <div className="flex flex-wrap gap-2 mt-3">
-                    <span className="px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-sm">Freelance</span>
-                    <span className="px-3 py-1 rounded-full bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-sm">Remoto</span>
-                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm">Tempo parcial</span>
+                    {Array.isArray(L?.contact?.availability?.tags)
+                      ? L.contact.availability.tags.map((tag: string, i: number) => (
+                          <span key={i} className="px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-sm">{tag}</span>
+                        ))
+                      : typeof t('contact.availability.tags') === 'string'
+                      ? t('contact.availability.tags')
+                          .split(',')
+                          .map((tag: string, i: number) => (
+                            <span key={i} className="px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-sm">{tag.trim()}</span>
+                          ))
+                      : null}
                   </div>
                 </div>
               </div>
@@ -194,7 +205,7 @@ export default function Contact() {
                     htmlFor="name"
                     className="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300"
                   >
-                    Nome
+                    {t('contact.form.name.label')}
                   </label>
                   <input
                     type="text"
@@ -202,7 +213,7 @@ export default function Contact() {
                     name="name"
                     required
                     className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all duration-300"
-                    placeholder="Seu nome completo"
+                    placeholder={t('contact.form.name.placeholder')}
                   />
                 </div>
 
@@ -211,7 +222,7 @@ export default function Contact() {
                     htmlFor="email"
                     className="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300"
                   >
-                    Email
+                    {t('contact.form.email.label')}
                   </label>
                   <input
                     type="email"
@@ -219,7 +230,7 @@ export default function Contact() {
                     name="email"
                     required
                     className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all duration-300"
-                    placeholder="seu@email.com"
+                    placeholder={t('contact.form.email.placeholder')}
                   />
                 </div>
 
@@ -228,7 +239,7 @@ export default function Contact() {
                     htmlFor="subject"
                     className="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300"
                   >
-                    Assunto
+                    {t('contact.form.subject.label')}
                   </label>
                   <input
                     type="text"
@@ -236,7 +247,7 @@ export default function Contact() {
                     name="subject"
                     required
                     className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all duration-300"
-                    placeholder="Como posso ajudar?"
+                    placeholder={t('contact.form.subject.placeholder')}
                   />
                 </div>
 
@@ -245,7 +256,7 @@ export default function Contact() {
                     htmlFor="message"
                     className="block text-sm font-semibold mb-2 text-slate-700 dark:text-slate-300"
                   >
-                    Mensagem
+                    {t('contact.form.message.label')}
                   </label>
                   <textarea
                     id="message"
@@ -253,7 +264,7 @@ export default function Contact() {
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-teal-500 dark:focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 outline-none transition-all duration-300 resize-none"
-                    placeholder="Conte-me sobre seu projeto ou ideia..."
+                    placeholder={t('contact.form.message.placeholder')}
                   />
                 </div>
 
@@ -269,12 +280,12 @@ export default function Contact() {
                         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                       />
-                      Enviando...
+                      {t('contact.form.sending')}
                     </>
                   ) : (
                     <>
                       <FiSend className="w-5 h-5" />
-                      Enviar Mensagem
+                      {t('contact.form.submit')}
                     </>
                   )}
                 </button>
