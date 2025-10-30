@@ -194,7 +194,7 @@ export default function Projects() {
               href="https://github.com/saracristinas"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-teal-500 dark:border-teal-400 text-teal-600 dark:text-teal-400 font-bold hover:bg-teal-500 dark:hover:bg-teal-400 hover:text-white transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-teal-500 dark:border-teal-400 text-teal-600 dark:text-teal-400 font-bold hover:bg-teal-500 dark:hover:bg-teal-400 hover:!text-white dark:hover:!text-white transition-all duration-300 hover:scale-105"
             >
               <FiGithub className="w-5 h-5" />
               Ver Todos no GitHub
