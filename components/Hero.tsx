@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMail, FiDownload } from "react-icons/fi";
 import Image from "next/image";
@@ -15,7 +15,7 @@ export default function Hero() {
     "Desenvolvedora Full Stack",
     "Engenheira de Software",
     "Criadora de Experiências",
-  ];
+    ];
 
   useEffect(() => {
     const handleType = () => {
@@ -59,8 +59,6 @@ export default function Hero() {
     },
   };
 
-  
-
   return (
     <section
       className="
@@ -70,40 +68,78 @@ export default function Hero() {
         overflow-hidden
         bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50
         dark:from-slate-950 dark:via-teal-950 dark:to-cyan-950
-        pt-20 sm:pt-24 lg:pt-28 xl:pt-32   /* ↑ mais espaço no desktop, sem mexer no mobile */
+        pt-20 sm:pt-24 lg:pt-28 xl:pt-32
         pb-28 sm:pb-32
       "
     >
-      {/* Animated background grid */}
       <div className="absolute inset-0 grid-pattern opacity-40" />
 
-      {/* Floating particles */}
       <div className="particles">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="particle"
-            style={{
-              width: Math.random() * 6 + 2 + "px",
-              height: Math.random() * 6 + 2 + "px",
-              left: Math.random() * 100 + "%",
-              top: Math.random() * 100 + "%",
-            }}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 5 + 5,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+        {useMemo(() => {
+
+          const list = Array.from({ length: 120 }).map(() => {
+
+            const size = Math.random() * 8 + 2;
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            
+
+            const x1 = (Math.random() * 100 - 50); 
+            const x2 = (Math.random() * 80 - 40);  
+            const x3 = (Math.random() * 60 - 30);  
+            const y1 = (Math.random() * 100 - 50); 
+            const y2 = (Math.random() * 80 - 40);  
+            const y3 = (Math.random() * 60 - 30);  
+            
+            const rot1 = Math.random() * 360;
+            const rot2 = Math.random() * 360;
+            
+            const duration = Math.random() * 8 + 4; 
+            const delay = Math.random() * 1; 
+ 
+            const baseOpacity = Math.random() * 0.4 + 0.1; 
+            const midOpacity = Math.random() * 0.7 + 0.3;  
+            
+            const hue = Math.random() > 0.7 ? 160 : 180; 
+            const saturation = Math.random() * 30 + 70; 
+
+            return {
+              style: {
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${left}%`,
+                top: `${top}%`,
+                background: `radial-gradient(circle, hsla(${hue}, ${saturation}%, 65%, ${midOpacity}) 0%, transparent 70%)`,
+                filter: `blur(${Math.random() * 1.5}px)`, 
+              },
+              animate: {
+                x: [0, x1, x2, x3, 0],
+                y: [0, y1, y2, y3, 0],
+                rotate: [0, rot1, rot2, 0],
+                opacity: [baseOpacity, midOpacity, baseOpacity * 0.5, midOpacity, baseOpacity],
+                scale: [1, 1.2, 0.8, 1.1, 1],
+              },
+              transition: {
+                duration,
+                repeat: Infinity,
+                repeatType: 'loop' as const,
+                ease: 'easeInOut',
+                delay,
+              },
+            };
+          });
+          return list.map((p, i) => (
+            <motion.div 
+              key={i} 
+              className="particle absolute rounded-full pointer-events-none" 
+              style={p.style} 
+              animate={p.animate} 
+              transition={p.transition} 
+            />
+          ));
+        }, [])}
       </div>
 
-      {/* Content */}
       <div className="container relative z-10 px-4 sm:px-6">
         <motion.div
           variants={containerVariants}
@@ -111,7 +147,7 @@ export default function Hero() {
           animate="visible"
           className="
             flex flex-col lg:flex-row items-center justify-between
-            gap-8 sm:gap-12 lg:gap-24       /* ↑ mais “respiro” entre texto e foto no desktop */
+            gap-8 sm:gap-12 lg:gap-24
           "
         >
           {/* Image - Ordem 1 em mobile, ordem 2 em desktop */}
@@ -144,7 +180,7 @@ export default function Hero() {
             variants={itemVariants}
             className="
               flex-1 text-center lg:text-left w-full order-2 lg:order-1
-              lg:mt-6 xl:mt-10 2xl:mt-16   /* ↑ empurra o bloco de texto um pouco para baixo só em telas grandes */
+              lg:mt-6 xl:mt-10 2xl:mt-16
             "
           >
             <div className="flex flex-col">
@@ -154,12 +190,12 @@ export default function Hero() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="
-                  inline-block mb-4 sm:mb-5 lg:mb-6  /* ↑ mais espaço abaixo do badge no desktop */
+                  inline-block mb-4 sm:mb-5 lg:mb-6
                   order-1
                 "
               >
                 <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-teal-500/10 dark:bg-teal-400/10 border border-teal-500/20 rounded-full text-teal-600 dark:text-teal-400 text-xs sm:text-sm font-semibold">
-                  👋 Bem-vinda ao meu portfólio
+                  👋 Bem-vindo(a) ao meu portfólio
                 </span>
               </motion.div>
 
@@ -249,7 +285,6 @@ export default function Hero() {
                   >
                     <FiLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
                   </a>
-                  
                 </motion.div>
               </div>
             </div>
