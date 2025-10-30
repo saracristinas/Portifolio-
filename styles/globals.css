@@ -11,13 +11,14 @@
    CSS VARIABLES
 =========================== */
 :root {
-  --bg-primary: 255 255 255;
-  --bg-secondary: 248 250 252;
-  --text-primary: 15 23 42;
-  --text-secondary: 71 85 105;
-  --accent: 20 184 166;
-  --accent-dark: 13 148 136;
-  --border: 226 232 240;
+  /* Tema claro suavizado - cores mais confortáveis */
+  --bg-primary: 245 247 250;        /* Cinza muito claro azulado */
+  --bg-secondary: 237 242 247;      /* Cinza claro suave */
+  --text-primary: 30 41 59;         /* Cinza escuro para melhor contraste */
+  --text-secondary: 71 85 105;      /* Mantido */
+  --accent: 20 184 166;             /* Mantido */
+  --accent-dark: 13 148 136;        /* Mantido */
+  --border: 203 213 225;            /* Borda mais suave */
   --section-padding: 6rem;
   --container-max: 1280px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -94,8 +95,8 @@
    SELECTION & FOCUS
 =========================== */
 ::selection {
-  background: rgba(20, 184, 166, 0.3);
-  color: rgb(15, 23, 42);
+  background: rgba(20, 184, 166, 0.25);
+  color: rgb(30, 41, 59);
 }
 
 .dark ::selection {
@@ -180,9 +181,9 @@
 =========================== */
 .grid-pattern {
   background-image: 
-    linear-gradient(rgba(20, 184, 166, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 184, 166, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(20, 184, 166, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 184, 166, 0.04) 1px, transparent 1px);
+  pointer-events: none;
 }
 
 .dark .grid-pattern {
